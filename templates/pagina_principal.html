@@ -3,7 +3,39 @@
 <head>
   <link href="static/css/pagina_principal.css" rel="stylesheet">
   <link href="{{ url_for('static', filename='css/logout.css') }}" rel="stylesheet">
+  <style>
+    .video-thumbnails {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 20px;
+    }
 
+    .video-thumbnails a {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      text-decoration: none;
+      color: #000;
+    }
+
+    .video-thumbnails img {
+      width: 300px;
+      height: 180px;
+      object-fit: cover;
+    }
+
+    .video-thumbnails h3 {
+      margin-top: 10px;
+      font-size: 16px;
+      line-height: 1.2;
+      max-height: 60px; /* Adjust the max height as needed0 */
+      overflow: hidden;
+      text-overflow: ellipsis;
+      word-wrap: break-word; /* Add this property to allow long titles to wrap */
+    }
+  </style>
   <title>Página Principal</title>
 </head>
 <body>
@@ -44,15 +76,25 @@
     </div>
     <div class="video-suggestions">
       <h2>Sugestões de Vídeos</h2>
-      <div class="video-thumbnails">
+      <!-- <div class="video-thumbnails">
         {% for video in videos %}
         <a href="{{ url_for('view_video', video_id=video.video_id) }}">
-            <img src="{{ video.thumbnail_url }}" alt="Thumbnail">
-            <h3>{{ video.title }}</h3>
-          </a>
+          <img src="{{ video.thumbnail_url }}" alt="Thumbnail">
+          <h3>{{ video.title }}</h3>
+        </a>
+        {% endfor %}
+      </div> -->
+      <div class="video-results">
+        {% for video in videos %}
+          <div class="video-thumbnail">
+            <a href="{{ url_for('get_video', video_id=video.video_id) }}">
+  
+              <img src="{{ video.thumbnail_url }}" alt="Thumbnail">
+              <h3>{{  video.title }}</h3>
+            </a>
+          </div>
         {% endfor %}
       </div>
-      
     </div>
   </main>
 

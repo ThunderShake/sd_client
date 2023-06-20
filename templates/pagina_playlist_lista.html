@@ -37,12 +37,10 @@
     <div class="playlist-container">
       {% for playlist in playlists %}
     <div class="playlist">
-        <div class="playlist-thumbnail">
-            <img src="static/img/video1.webp" alt="Miniatura do vídeo">
-        </div>
+        
         <a href="{{ url_for('playlist', id=playlist.id) }}">
 
-            <h3>{{ playlist.name }}</h3>
+            <h1>{{ playlist.name }}</h3>
         </a>
         <button class="remove-playlist" onclick="removeFromPlaylist('{{ playlist.id}}')">Remover Playlist</button>
     </div>
