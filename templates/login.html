@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link href="static/css/login-register.css" rel="stylesheet">
+    <title>Login e Registo</title>
+</head>
+
+<body>
+    <div class="container">
+        <div class="form-container">
+            <form action="{{ url_for('login_email') }}" method="post" id="loginForm" class="form active">
+                <div class="logo-container">
+                    <img src="static/img/logo.png" alt="Logo" class="logo">
+                </div>
+                <label for="loginName">Email:</label>
+                <input type="text" id="loginName" name="loginName" required>
+                <label for="loginPassword">Senha:</label>
+                <input type="password" id="loginPassword" name="loginPassword" required>
+                <input type="submit" value="Login">
+                <div class="separator">
+                    <span class="separator-text">ou</span>
+                </div>
+                <div class="google-login">
+                    <img src="static/img/gmail-icon.png" alt="Gmail Icon" class="google-login-icon">
+                    <span class="google-login-text">Logar com Google</span>
+                </div>
+                <div class="switch-form-text">
+                    Não tem uma conta? <a href="#" id="registerToggle">Registe-se</a>
+                </div>
+            </form>
+            <form action="/register" method="post" id="registerForm" class="form">
+                <div class="logo-container">
+                    <img src="static/img/logo.png" alt="Logo" class="logo">
+                </div>
+                <label for="registerName">Nome:</label>
+                <input type="text" id="registerName" name="registerName" required>
+                <label for="registerEmail">Email:</label>
+                <input type="email" id="registerEmail" name="registerEmail" required>
+                <label for="registerPassword">Senha:</label>
+                <input type="password" id="registerPassword" name="registerPassword" required>
+                <label for="registerRepeatPassword">Repetir senha:</label>
+                <input type="password" id="registerRepeatPassword" name="registerRepeatPassword" required>
+                <input type="submit" value="Registar">
+            </form>
+            <div class="separator">
+                <span class="separator-text">ou</span>
+            </div>
+            <div class="google-login">
+                <img src="static/img/gmail-icon.png" alt="Gmail Icon" class="google-login-icon">
+                <span class="google-login-text">Logar com Google</span>
+                <button id="signInWithGoogle">PIPUPIU</button>
+            </div>
+            <div class="facebook-login">
+                <img src="static/img/facebook-icon.png" alt="Facebook Icon" class="facebook-login-icon">
+                <span class="facebook-login-text">Logar com Facebook</span>
+            </div>
+            <div class="switch-form-text">
+                Já tem uma conta? <a href="#" id="loginToggle">Login</a>
+            </div>
+        </div>
+    </div>
+<script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/9.22.1/firebase-app.js"; import { getAuth, GoogleAuthProvider, signInWithRedirect, getRedirectResult } from "https://www.gstatic.com/firebasejs/9.22.1/firebase-auth.js"; const firebaseConfig
+        = {
+        apiKey: "AIzaSyAprkEYSoGL6AiulfFf3vrVyXSCh0ybUTI", authDomain: "skillflix-a23c3.firebaseapp.com", projectId: "skillflix-a23c3", storageBucket: "skillflix-a23c3.appspot.com", messagingSenderId: "924409818048", appId: "1:924409818048:web:e68611dcff76a34a22f625"
+    }; 
+    const app = initializeApp(firebaseConfig);
+  const provider = new GoogleAuthProvider(app);
+  const auth = getAuth(app);
+
+  const signInWithGoogleButton = document.getElementById("signInWithGoogle");
+
+  signInWithGoogleButton.addEventListener('click', (e) => {
+    signInWithRedirect(auth, provider);
+  });
+  getRedirectResult(auth)
+            .then((result) => {
+                if (result.user) {
+                    // Usuário autenticado com sucesso
+                    // Obtenha o nome do usuário
+                    const userName = result.user.displayName;
+                    const userEmail = result.user.email;
+                    const uid = result.user.uid;
+                    
+
+                    // Faça o redirecionamento para a página desejada
+                    window.location.href = '/login_with_google?name=' + encodeURIComponent(userName) + '&email=' + encodeURIComponent(userEmail) + '&uid=' + encodeURIComponent(uid);
+                }
+            })
+            .catch((error) => {
+                console.log(error);
+            });
+
+</script>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        var registerToggle = document.getElementById("registerToggle");
+        var loginForm = document.getElementById("loginForm");
+        var registerForm = document.getElementById("registerForm");
+
+        registerToggle.addEventListener("click", function (event) {
+            event.preventDefault();
+            loginForm.classList.remove("active");
+            registerForm.classList.add("active");
+        });
+    });
+</script>
+
+</body>
+
+</html>

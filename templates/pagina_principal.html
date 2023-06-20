@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <link href="static/css/pagina_principal.css" rel="stylesheet">
+  <link href="{{ url_for('static', filename='css/logout.css') }}" rel="stylesheet">
+
+  <title>Página Principal</title>
+</head>
+<body>
+  <header>
+    <div class="logo-container">
+      <img src="static/img/logo.png" alt="Logo da empresa">
+    </div>
+    <nav>
+      <ul>
+        <li><a href="{{ url_for('homepage') }}">Home</a></li>
+        <li><a href="{{ url_for('my_playlists') }}">Minhas Playlists</a></li>
+        <li><a href="{{ url_for('account') }}">Perfil</a></li>
+        <li><a href="{{ url_for('about') }}">Sobre</a></li>
+      </ul>
+    </nav>
+    <button id="logout-button" class="logout-button" onclick="logout()">
+      <i class="fas fa-sign-out-alt"></i>
+      <span class="logout-text">Terminar Sessão</span>
+    </button>
+    
+    <script>
+      function logout() {
+        window.location.href = '/logout'; // Redirecionar para a página de logout
+      }
+    </script>
+    
+    
+  </header>
+
+  <main>
+    <div class="search-container">
+      <h1>Encontre o tutorial perfeito</h1>
+      <form action="/search" method="get" id="searchForm">
+        <input type="text" name="search" id="searchInput" placeholder="O que deseja aprender hoje?">
+        <button type="submit">Pesquisar</button>
+      </form>
+      
+    </div>
+    <div class="video-suggestions">
+      <h2>Sugestões de Vídeos</h2>
+      <div class="video-thumbnails">
+        {% for video in videos %}
+        <a href="{{ url_for('view_video', video_id=video.video_id) }}">
+            <img src="{{ video.thumbnail_url }}" alt="Thumbnail">
+            <h3>{{ video.title }}</h3>
+          </a>
+        {% endfor %}
+      </div>
+      
+    </div>
+  </main>
+
+  <footer>
+    <p>Todos os direitos reservados &copy; 2023</p>
+  </footer>
+  <script>
+    document.getElementById("searchForm").addEventListener("submit", function(event) {
+      event.preventDefault(); // Impede o envio padrão do formulário
+  
+      // Obtém o valor do campo de entrada de texto
+      var searchQuery = document.getElementById("searchInput").value;
+  
+      // Redireciona para a rota correta com o termo pesquisado
+      window.location.href = "/search?q=" + encodeURIComponent(searchQuery);
+    });
+  </script>
+  
+</body>
+</html>

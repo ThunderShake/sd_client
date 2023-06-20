@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <link href="static/css/pagina_principal.css" rel="stylesheet">
+  <link href="{{ url_for('static', filename='css/logout.css') }}" rel="stylesheet">
+
+  <link href="static/css/pagina_sobre.css" rel="stylesheet">
+
+  <title>Sobre</title>
+</head>
+<body>
+  <header>
+    <div class="logo-container">
+      <img src="static/img/logo.png" alt="Logo da empresa">
+    </div>
+    <nav>
+      <ul>
+        <li><a href="{{ url_for('homepage') }}">Home</a></li>
+        <li><a href="{{ url_for('my_playlists') }}">Minhas Playlists</a></li>
+        <li><a href="{{ url_for('account') }}">Perfil</a></li>
+        <li><a href="{{ url_for('about') }}">Sobre</a></li>
+      </ul>
+    </nav>
+    <button id="logout-button" class="logout-button" onclick="logout()">
+      <i class="fas fa-sign-out-alt"></i>
+      <span class="logout-text">Terminar Sessão</span>
+    </button>
+    
+    <script>
+      function logout() {
+        window.location.href = '/logout'; // Redirecionar para a página de logout
+      }
+    </script>
+  </header>
+
+  <main>
+    <div class="container">
+      <h1>Sobre</h1>
+      <div class="about-text">
+        <p>Bem-vindo à nossa página web! Aqui você pode encontrar tutoriais sobre uma ampla variedade de assuntos. Nossa missão é fornecer informações e orientações úteis para ajudá-lo a aprender e dominar várias habilidades.</p>
+        <p>Em nossa plataforma, você encontrará uma extensa biblioteca de vídeos tutoriais que abrangem tópicos como programação, design gráfico, música, culinária, esportes e muito mais. Nossos especialistas estão comprometidos em fornecer conteúdo educacional de alta qualidade para facilitar sua jornada de aprendizado.</p>
+        <p>Além dos tutoriais, oferecemos recursos adicionais, como artigos informativos, dicas práticas e ferramentas úteis para aprimorar suas habilidades. Nosso objetivo é fornecer uma experiência abrangente e enriquecedora para nossos usuários.</p>
+        <p>Aqui estão alguns dos recursos que você encontrará em nossa página:</p>
+        <ul>
+          <li>Tutoriais em vídeo de alta qualidade</li>
+          <li>Artigos informativos e dicas práticas</li>
+          <li>Ferramentas e recursos úteis</li>
+          <li>Comunidade de aprendizado interativa</li>
+          <li>Suporte e assistência de nossa equipe de especialistas</li>
+        </ul>
+        <p>Se você tiver alguma dúvida, sugestão ou feedback, não hesite em entrar em contato conosco. Estamos sempre buscando melhorar sua experiência em nosso site e fornecer o melhor conteúdo possível para ajudá-lo a alcançar seus objetivos de aprendizado.</p>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <p>Todos os direitos reservados &copy; 2023</p>
+  </footer>
+
+</body>
+</html>

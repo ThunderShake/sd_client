@@ -1,0 +1,13 @@
+{
+  "type": "service_account",
+  "project_id": "skillflix-a23c3",
+  "private_key_id": "e1ef7d37e34c8fc464e0944cb0b01663ef522887",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQC5+N6aomFvuRCK\nwzm4qbmvp09ODZPIbkVrCu8W4h0mLcLxCcsNrAfhRBQRuOjadiBzM4HXxv/26jIn\nGlNQvuHfxlFXx7YAXWEyLKxdKh50pnW2OJeHEueJ3PBrS6h8e/Bw99f8pLFeOCoK\ngAyT5HP6SvHTIE+eCHbq3RrzBj+MOAmPbY0DO/CP3MCFmM/+MTViQa9qMfoV9FKS\nqndtbqYCwnQEabERGeG7GEsnB+OCxmB5YERlgXIKWzTaSDmwCRJzfLAc7/AMje+v\nf6kcP4MpS2LE0ck7E4i7wFVJJnD7Uz85bf6eJgVO+8EhXaqC1k0d39vLWHgnmnlH\n5FLoqPDBAgMBAAECggEADXlsBINxIJeFrK4kLZ5jgSfzyaWXcGlX739nbw6jOsfM\nROtXGladbAuDEj0l5uUx6PLhjJ0jINRbXaStRm+MHUrozB3A0LIzV3+v3eCuO/iv\nFOyxAuUCYGVhCH8e9iUDOOYmMKyMmtViK2hXcPQ3mHoLXycLSbmWhyINwK+yVUH+\n7waVDeCa5xn7NetvGHpJL8l99iN7xPqt98YU5HnIr1E9IZcHEIqErgG3yxVATgBB\n3/HX3uuJ69ve6WN+TWrfqWWBfYsrD06b4wTdAqpsJGLWKJDzVuy/QWmJDhRp2/hc\nJ27Mw23yYE7LC2CJncuz35288fiqwJoC1Z09NX7B6QKBgQDrR4n6givKsylQbIiL\nQHZ3mq7O8Y575wCBFVKJaqfHvrEYIPqPnMyOok2EvCFmahLMOlRBpg/dN6xdtaL6\nhqEcBzfZtF/hLeQdOR0xQFUddcsFawnYsQD5ua4nC/aC3yAzb71uKZSZD/mI8poy\nMwxgTQY5nZYrgMarGI2fs+9RCQKBgQDKWa3wFgzgtsyqeJORBrv6rWVfyy0LOqJU\n1o91ROl8PVG9pGodezLOwIqu3kWr9CNlHYIF7ZCFx6z4+SETM0ooZjwtVYQeExrl\nAieRA8SPgfhHVRkhljtjXQ+PlG1cWUH64/fXJLReelFIzIk7COxD75FhOqGmUKV7\n5KbHAaTn+QKBgFzmKWf9f/cQWO7FfACn2l8Nd5qErILlykAtwCI8N7VZ6Ski1Gxi\nOC7VjRAtDG8Y0QVMvroRLNBnTCrQLmMHR5P+kaHnY7hQ23Jie9FXmoQAX8Jq6j9i\nXIU+OLJ4OcSg/2Dv7PcTefYZ5aiaSiIqH+fiYePcAlB5D3i9QCZf8M2pAoGAJPVQ\nQaOlYn3Az/oJ6dkzCEwXUfHIHl7tO1WdCiw2AQ0qGtsmzo+r7ftY2SubyhZjSJql\nHvQPC4A25ZqLIfiiONLDdvxBj0SqCt3j4CayBgwVDuJKHspTuohKyUyw1Mcwt+Rf\nZho8H21z3zoMbo3oqVfeU8XjtH7SWtieZYa1WfECgYEAg4C0WG1Ae6zbAiILMr8B\nRw+MiJOR8CJ9sqhUbdGNVHq8YRpUdK27BzEHN0Yftto8EhFq7LRmKJBpPgZxswu+\ncVCjfBHDJ77HoQYxKbmw2mGqlD3INaocDhfvqvZZlmJP97k9PPu6ZZVoyXzbjrWG\nGw55MKaB3l+nW8cdVXqX+6A=\n-----END PRIVATE KEY-----\n",
+  "client_email": "firebase-adminsdk-mdqvx@skillflix-a23c3.iam.gserviceaccount.com",
+  "client_id": "102112921210491517346",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/firebase-adminsdk-mdqvx%40skillflix-a23c3.iam.gserviceaccount.com",
+  "universe_domain": "googleapis.com"
+}

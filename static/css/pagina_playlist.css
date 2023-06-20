@@ -1,0 +1,136 @@
+/* Estilos para o header */
+header {
+    background-color: #333;
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .logo-container img {
+    height: 80px;
+  }
+  
+  nav ul {
+    list-style: none;
+    display: flex;
+  }
+  
+  nav ul li {
+    margin-left: 20px;
+  }
+  
+  nav ul li a {
+    text-decoration: none;
+    color: #fff;
+    font-weight: bold;
+    transition: color 0.3s ease;
+  }
+  
+  nav ul li a:hover {
+    color: #ff9900;
+  }
+  
+  /* Estilos para o main */
+  main {
+    padding: 20px;
+  }
+  
+  .video-playlist h1 {
+    font-size: 28px;
+    margin-bottom: 20px;
+    color: #333;
+  }
+  
+  .video-playlist {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin-top: 40px;
+  }
+  
+/* Estilos para a miniatura do vídeo */
+.video-thumbnail {
+    flex: 0 0 calc(25% - 20px);
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;  /* Adicione esta linha */
+  }
+  
+  .video-thumbnail img {
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease;
+  }
+  
+  .video-thumbnail:hover img {
+    transform: scale(1.05);
+  }
+  
+  /* Estilos para o título do vídeo */
+  .video-thumbnail h3 {
+    margin-top: 10px;
+    font-size: 18px;
+    color: #333;
+  }
+  
+  /* Estilos para o botão de remover da playlist */
+  .remove-from-playlist {
+    display: inline-block;
+    margin-top: 10px;
+    padding: 5px 10px;
+    background-color: #a89373;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .remove-from-playlist:hover {
+    background-color: #e7a746;
+  }
+  
+  /* Estilos para o footer */
+  footer {
+    background-color: #333;
+    padding: 10px;
+    text-align: center;
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+  }
+  
+  footer p {
+    color: #fff;
+    font-size: 14px;
+    margin: 0;
+  }
+  
+  footer a {
+    color: #fff;
+    text-decoration: none;
+    transition: color 0.3s ease;
+  }
+  
+  footer a:hover {
+    color: #f6a123;
+  }
+  
+  h1 {
+    text-align: center;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 3em;
+    color: #5a5a5a;
+    text-shadow: 2px 2px 4px #000;
+    padding: 10px;
+    background-color: #f7f7f7;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}

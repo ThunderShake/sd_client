@@ -1,0 +1,230 @@
+@import url('https://fonts.googleapis.com/css2?family=Cinzel&display=swap'); /* Importa uma fonte "antiga" */
+
+/* Adicionei a classe .main-container para envolver todo o conteúdo */
+.main-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh; /* Garante que o conteúdo ocupe pelo menos a altura total da janela de visualização */
+}
+
+#add-to-playlist-button {
+  background-color: #a89373;
+  border: none;
+  color: white;
+  padding: 10px 20px;
+  font-size: 16px;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 10px;
+}
+
+.video-player {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 20px;
+}
+
+.video-wrapper {
+  
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.video-player {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 20px;
+}
+
+.video-container {
+  width: 100%;
+  max-width: 800px;
+  height: auto;
+  margin-bottom: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.video-container iframe {
+  width: 100%;
+  max-height: 600px;
+}
+
+.video-buttons {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+#previous-tutorial-button,
+#next-tutorial-button {
+  background-color: #a89373;
+  border: none;
+  color: white;
+  padding: 10px 20px;
+  font-size: 16px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease; /* Adiciona uma transição suave na cor de fundo */
+}
+
+#previous-tutorial-button:hover,
+#next-tutorial-button:hover {
+  background-color: #895f3d; /* Altera a cor de fundo ao passar o mouse */
+}
+
+#previous-tutorial-button:focus,
+#next-tutorial-button:focus {
+  outline: none; /* Remove a borda ao clicar no botão */
+}
+
+#previous-tutorial-button:active,
+#next-tutorial-button:active {
+  background-color: #634525; /* Altera a cor de fundo ao clicar no botão */
+}
+
+#add-to-playlist-button {
+  background-color: #a89373;
+  border: none;
+  color: white;
+  padding: 10px 20px;
+  font-size: 16px;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 10px;
+}
+
+.interaction-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: auto;
+  background-color: #f2f2f2;
+  padding: 20px;
+  border-radius: 10px;
+  width: 100%;
+  font-family: 'Cinzel', serif;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  margin: 0;
+}
+
+.like-section {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  margin-bottom: 20px;
+  width: 200px;
+  border: 2px solid #ccc; /* Adiciona uma borda */
+  border-radius: 10px; /* Adiciona bordas arredondadas */
+  padding: 10px; /* Adiciona preenchimento */
+}
+
+.like-button,
+.dislike-button {
+  background: none;
+  border: none;
+  font-size: 2em;
+  cursor: pointer;
+}
+
+#like-count,
+#dislike-count {
+  margin: 0 10px;
+}
+
+.comments-section {
+  width: 100%;
+  max-width: 800px;
+}
+
+#comment-count {
+  margin-bottom: 10px;
+  font-size: 18px; 
+}
+
+.comment {
+  display: flex;
+  margin-bottom: 20px;
+}
+
+.avatar {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  margin-right: 20px;
+}
+
+.comment-details {
+  flex-grow: 1;
+}
+
+.comment-author {
+  font-weight: bold;
+}
+
+.comment-text {
+  margin-top: 5px;
+}
+
+#comment-form {
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+}
+
+#user-name-input, 
+#comment-input {
+  margin-bottom: 10px;
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  font-size: 18px;
+  background-color: #fdf8f5;
+}
+
+#comment-form input[type='submit'] {
+  background-color: #a89373;
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+/* Adicionei as regras abaixo para posicionar os botões de próximo e anterior */
+#previous-tutorial-button,
+#next-tutorial-button {
+  background-color: #a89373;
+  border: none;
+  color: white;
+  padding: 10px 20px;
+  font-size: 16px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+#previous-tutorial-button {
+  margin-right: 10px;
+}
+
+#next-tutorial-button {
+  margin-left: 10px;
+}

@@ -1,0 +1,185 @@
+body {
+  background: url("/static/img/17973908.jpg");
+  background-size: cover;
+}
+
+
+.container {
+  max-width: 400px;
+  margin: 0 auto;
+  padding: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.form-container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  perspective: 800px;
+}
+
+.form {
+  position: absolute;
+  top: 50%;
+  left: -15%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+  padding: 60px;
+  background-color: #fff;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  opacity: 1;
+  transition: opacity 0.3s ease;
+  transform-origin: left center;
+  transform: rotateY(0deg);
+  display: none;
+}
+
+
+.form.active {
+  display: block;
+}
+
+.form.out {
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+
+.form.in {
+  opacity: 1;
+  pointer-events: auto;
+  transition: opacity 0.3s ease;
+}
+
+.form h1 {
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.form label {
+  display: block;
+  margin-bottom: 10px;
+  font-weight: bold;
+}
+
+.form input[type="text"],
+.form input[type="password"],
+.form input[type="email"] {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.form input[type="submit"] {
+  width: 106%;
+  padding: 10px;
+  font-size: 16px;
+  color: #fff;
+  background-color: #333;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.form input[type="submit"]:hover {
+  background-color: #555;
+}
+
+.separator {
+  display: flex;
+  align-items: center;
+  margin: 20px 0;
+}
+
+.separator-line {
+  flex-grow: 1;
+  height: 1px;
+  background-color: #ccc;
+}
+
+.separator:before,
+.separator:after {
+  content: "";
+  flex-grow: 1;
+  height: 1px;
+  background-color: #ccc;
+  margin: 0 10px;
+}
+
+.google-login,
+.facebook-login {
+  display: flex;
+  align-items: center;
+  margin-top: -18px;
+}
+
+.google-login-icon,
+.facebook-login-icon {
+  width: 20px;
+  height: 20px;
+  margin-right: 5px;
+}
+
+.google-login-text,
+.facebook-login-text {
+  font-size: 14px;
+  color: #555;
+  display: flex;
+  align-items: center;
+}
+
+.google-login {
+  justify-content: flex-start;
+}
+
+.facebook-login {
+  justify-content: flex-end;
+}
+
+.switch-form-text {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.switch-form-text a {
+  color: #333;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.logo-container {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.logo {
+  width: 200px; /* Ajuste o tamanho conforme necessário */
+  height: auto;
+}
+/* Estilos adicionais para o campo de senha */
+.password-container {
+  position: relative;
+}
+
+.password-toggle {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+}
+
+.password-toggle-icon {
+  font-size: 18px;
+  color: #999;
+}
+
+/* Estilos adicionais para ajustar o ícone do olho quando a senha está visível */
+.password-toggle-icon.visible {
+  color: #333;
+}

@@ -1,0 +1,70 @@
+.popup {
+  display: none;
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.popup-content {
+  background-color: white;
+  margin: 100px auto;
+  padding: 45px;
+  border-radius: 5px;
+  width: 300px;
+  text-align: center;
+}
+
+.popup-content h2 {
+  margin-bottom: 20px;
+}
+
+.popup-content label {
+  display: block;
+  margin-bottom: 10px;
+  font-weight: bold;
+}
+
+.popup-content input[type="text"] {
+  width: 100%;
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  margin-bottom: 10px;
+}
+
+.popup-content button {
+  background-color: #a89373;
+  border: none;
+  color: white;
+  padding: 10px 20px;
+  font-size: 16px;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 10px;
+}
+
+.popup-content button:first-of-type {
+  margin-right: 10px;
+}
+
+.playlist-option {
+  margin-bottom: 10px;
+  cursor: pointer;
+  padding: 5px;
+  border-radius: 5px;
+  background-color: #f2f2f2;
+}
+
+.playlist-option:hover {
+  background-color: #e0e0e0;
+}
+.popup-content.message-shown h2,
+.popup-content.message-shown #playlist-options,
+.popup-content.message-shown #create-playlist-form {
+  display: none;
+}

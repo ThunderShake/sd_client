@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <link href="{{ url_for('static', filename='css/pagina_principal.css') }}" rel="stylesheet">
+  <link href="{{ url_for('static', filename='css/pagina_video.css') }}" rel="stylesheet">
+  <link href="{{ url_for('static', filename='css/logout.css') }}" rel="stylesheet">
+
+  <link href="{{ url_for('static', filename='css/pop_up.css') }}" rel="stylesheet">
+  <title>Vídeo</title>
+</head>
+
+<body>
+  <header>
+    <div class="logo-container">
+      <img src="{{ url_for('static', filename='img/logo.png') }}" alt="Logo da empresa">
+    </div>
+    <nav>
+      <ul>
+        <li><a href="{{ url_for('homepage') }}">Home</a></li>
+        <li><a href="{{ url_for('my_playlists') }}">Minhas Playlists</a></li>
+        <li><a href="{{ url_for('account') }}">Perfil</a></li>
+        <li><a href="{{ url_for('about') }}">Sobre</a></li>
+      </ul>
+    </nav>
+    <button id="logout-button" class="logout-button" onclick="logout()">
+      <i class="fas fa-sign-out-alt"></i>
+      <span class="logout-text">Terminar Sessão</span>
+    </button>
+    
+    <script>
+      function logout() {
+        window.location.href = '/logout'; // Redirecionar para a página de logout
+      }
+    </script>
+  </header>
+  <main>
+    <div class="video-wrapper">
+      <div class="video-container">
+        <iframe width="1000" height="700" src="https://www.youtube.com/embed/{{id_platform}}" frameborder="0"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allowfullscreen></iframe>
+      </div>
+      <p>{{description}}</p>
+      <p id="view-count">Número de visualizações: {{ views }}</p> <!-- Exemplo de número de visualizações -->
+      
+      <button id="add-to-playlist-button">Adicionar à Playlist</button>
+    </div>
+
+    <div class="interaction-container">
+      <div class="like-section">
+        <form action="/video/{{ video_id }}/like" method="POST">
+          <button type="submit" class="like-button">👍</button>
+          <p id="like-count">{{ likes }}</p>
+        </form>
+        <form action="/video/{{ video_id }}/dislike" method="POST">
+          <button type="submit" class="dislike-button">👎</button>
+          <p id="dislike-count">{{ dislikes }}</p>
+        </form>
+      </div>
+      
+      <div class="comments-section">
+        <h2>Comentários</h2>
+        <p id="comment-count">{{ comments|length }} comentários</p> <!-- Exemplo de contador de comentários -->
+        <div id="comments-display">
+          {% for comment in comments %}
+          <div class="comment">
+            <img src="static/img/gmail-icon.png" alt="Avatar do usuário" class="avatar">
+            <div class="comment-details">
+              <p class="comment-author">{{ comment.name }}</p>
+              <p class="comment-text">{{ comment.descr }}</p>
+            </div>
+          </div>
+          {% endfor %}
+        </div>
+      
+        <form id="comment-form" action="{{ url_for('add_comment', video_id=video_id) }}" method="POST">
+          <input type="hidden" name="video_id" value="{{ video_id }}">
+          <label for="comment-input">Deixe um comentário:</label>
+          <textarea id="comment-input" name="comment" rows="4" cols="50"></textarea>
+          <input type="submit" value="Enviar">
+        </form>
+        
+        
+      </div>
+      <div id="playlist-popup" class="popup">
+        <div class="popup-content">
+          <h2>Adicionar à Playlist</h2>
+          <div id="playlist-options"></div>
+          <form id="create-playlist-form">
+            <label for="playlist-name-input">Nome da nova Playlist:</label>
+            <input id="playlist-name-input" type="text">
+            <button id="create-playlist-button">Criar Playlist</button>
+          </form>
+          <div id="message-container"></div>
+        </div>
+      </div>
+      
+      
+    </main>
+    <script>
+      document.getElementById('add-to-playlist-button').addEventListener('click', function () {
+        document.getElementById('playlist-popup').style.display = 'block';
+      });
+    
+      // Function to create playlist for each playlist_response
+      function createPlaylist(playlistName) {
+        console.log('Nome da playlist:', playlistName);
+    
+        var url = '/create_playlist/' + encodeURIComponent(playlistName);
+    
+        fetch(url, {
+          method: 'POST'
+        })
+          .then(function (response) {
+            if (response.ok) {
+              return response.text();
+            } else {
+              throw new Error('Erro ao adicionar o vídeo à playlist: ' + response.status);
+            }
+          })
+          .then(function (data) {
+            // Display success message
+            showMessage('Vídeo adicionado à playlist: ' + playlistName, false);
+          })
+          .catch(function (error) {
+            // Display error message
+            showMessage(error.message, false);
+          });
+      }
+    
+      function addToPlaylist(playlistId, playlistName, videoId) {
+        console.log('ID da playlist selecionada:', playlistId);
+        console.log('ID do vídeo:', videoId);
+    
+        var url = '/add_to_playlist/' + encodeURIComponent(playlistId) + '?videoId=' + encodeURIComponent(videoId);
+    
+        fetch(url, {
+          method: 'POST'
+        })
+          .then(function (response) {
+            if (response.ok) {
+              return response.text();
+            } else {
+              throw new Error('Erro ao adicionar o vídeo à playlist: ' + response.status);
+            }
+          })
+          .then(function (data) {
+            // Display success message
+            showMessage('Vídeo adicionado à playlist: ' + playlistName, false);
+          })
+          .catch(function (error) {
+            // Display error message
+            showMessage(error.message, false);
+          });
+      }
+    
+      // Function to fetch playlists from the server
+      function fetchPlaylists() {
+        var playlistResponses = JSON.parse(`{{ playlists|tojson|safe }}`);
+    
+        var playlistOptions = document.getElementById('playlist-options');
+        playlistOptions.innerHTML = '';
+    
+        // Create an option for each playlist response
+        playlistResponses.forEach(function (playlist) {
+          var option = document.createElement('div');
+          option.classList.add('playlist-option');
+          option.textContent = playlist.name;
+          option.addEventListener('click', function (event) {
+            event.stopPropagation();
+            addToPlaylist(playlist.id, playlist.name, "{{video_id}}");
+          });
+          playlistOptions.appendChild(option);
+        });
+    
+        // Add option for creating a new playlist
+        var newOption = document.createElement('div');
+        newOption.classList.add('playlist-option');
+        newOption.addEventListener('click', function (event) {
+          event.stopPropagation();
+          var playlistNameInput = document.getElementById('playlist-name-input');
+          var playlistName = playlistNameInput.value;
+          createPlaylist(playlistName);
+          playlistNameInput.value = '';
+        });
+        playlistOptions.appendChild(newOption);
+      }
+    
+      document.getElementById('create-playlist-button').addEventListener('click', function () {
+        var playlistNameInput = document.getElementById('playlist-name-input');
+        var playlistName = playlistNameInput.value;
+        createPlaylist(playlistName);
+        playlistNameInput.value = '';
+      });
+    
+      fetchPlaylists();
+    
+      // Close the pop-up when clicking outside
+      window.addEventListener('click', function (event) {
+        var popup = document.getElementById('playlist-popup');
+        if (event.target == popup) {
+          popup.style.display = 'none';
+        }
+      });
+    
+      // Function to display messages in the pop-up
+      function showMessage(message, isSuccess) {
+        var messageContainer = document.getElementById('message-container');
+        messageContainer.innerHTML = '';
+    
+        var messageElement = document.createElement('p');
+        messageElement.textContent = message;
+    
+        if (isSuccess) {
+          messageElement.classList.add('success-message');
+        } else {
+          messageElement.classList.add('error-message');
+        }
+    
+        messageContainer.appendChild(messageElement);
+      }
+    </script>
+    
+    
+
+    <footer>
+      <p>Todos os direitos reservados &copy; 2023</p>
+    </footer>
+  </body>
+  </html>

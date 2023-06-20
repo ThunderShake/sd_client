@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <link href="{{ url_for('static', filename='css/pagina_playlist.css') }}" rel="stylesheet">
+  <link href="{{ url_for('static', filename='css/logout.css') }}" rel="stylesheet">
+
+  <title>Minha Playlist</title>
+</head>
+<body>
+  <header>
+    <div class="logo-container">
+      <img src="{{ url_for('static', filename='img/logo.png') }} " alt="Logo da empresa">
+    </div>
+    <nav>
+      <ul>
+        <li><a href="{{ url_for('homepage') }}">Home</a></li>
+        <li><a href="{{ url_for('my_playlists') }}">Minhas Playlists</a></li>
+        <li><a href="{{ url_for('account') }}">Perfil</a></li>
+        <li><a href="{{ url_for('about') }}">Sobre</a></li>
+      </ul>
+    </nav>
+    <button id="logout-button" class="logout-button" onclick="logout()">
+      <i class="fas fa-sign-out-alt"></i>
+      <span class="logout-text">Terminar Sessão</span>
+    </button>
+    
+    <script>
+      function logout() {
+        window.location.href = '/logout'; // Redirecionar para a página de logout
+      }
+    </script>
+  </header>
+
+  <main>
+    <h1>Videos da Playlist</h1>  
+
+    <div class="video-playlist">
+      {% for video in videos %}
+      <div class="video-thumbnail">
+        <a href="{{ url_for('view_video', video_id=video.id_video) }}">
+          <img src="{{ video.thumbnail_url }}" alt="Thumbnail">
+          <h3>{{ video.title }}</h3>
+        </a>
+        <input type="hidden" class="id-user-list" value="{{ video.id_user_list }}">
+        <input type="hidden" class="id-video" value="{{ video.id_video }}">
+        <button class="remove-from-playlist" onclick="removeFromPlaylist('{{ video.id_user_list }}', '{{ video.id_video }}')">Remover da Playlist</button>
+      </div>
+      {% endfor %}
+    </div>
+  </main>
+
+  <footer>
+    <p>Todos os direitos reservados &copy; 2023</p>
+  </footer>
+
+</body>
+<script>
+  // Função para remover vídeo da playlist
+  function removeFromPlaylist(playlistId, videoId) {
+    var url = 'https://flask-production-6371.up.railway.app/api/playlists/videos';
+    
+    console.log(playlistId, videoId)
+    var data = {
+      "id_user_list": playlistId,
+      "id_video": videoId
+
+    };
+
+    fetch(url, {
+      method: 'DELETE', 
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(data)
+    })
+      .then(function (response) {
+        if (response.ok) {
+          return response.text();
+        } else {
+          throw new Error('Erro ao remover o vídeo da playlist: ' + response.status);
+        }
+      })
+      .then(function (data) {
+        // Exibir mensagem de sucesso
+        // Recarregar a página para atualizar a lista de vídeos da playlist
+        location.reload();
+      })
+      .catch(function (error) {
+        // Exibir mensagem de erro
+        showMessage(error.message, false);
+      });
+  }
+
+  // Função para exibir mensagens na página
+  function showMessage(message, isSuccess) {
+    var messageContainer = document.createElement('div');
+    messageContainer.classList.add('message-container');
+
+    var messageElement = document.createElement('p');
+    messageElement.textContent = message;
+
+    if (isSuccess) {
+      messageElement.classList.add('success-message');
+    } else {
+      messageElement.classList.add('error-message');
+    }
+
+    messageContainer.appendChild(messageElement);
+    document.body.appendChild(messageContainer);
+
+    // Remover a mensagem após 3 segundos
+    setTimeout(function () {
+      document.body.removeChild(messageContainer);
+    }, 3000);
+  }
+</script>
+
+</html>
